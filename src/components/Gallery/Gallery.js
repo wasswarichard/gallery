@@ -3,9 +3,14 @@ import "./Gallery.css"
 import axios from "axios";
 import config from "../../Helpers/config.json";
 import {SRLWrapper} from "simple-react-lightbox";
+import ImageCard from "../ImageCard/ImageCard";
+import 'bootstrap/dist/css/bootstrap.css'
 
 const Gallery = () => {
     const [Gallery, setGallery] = useState([]);
+    const [currentState, setCurrentState] = useState(10);
+    const [isPrevious, setIsPrevious] = useState(false);
+    const [isNext, setIsNext] = useState(false);
     useEffect(() => {
         const loadUsers = async () => {
             await axios.get(`${config.apiUrl}/photos`)
@@ -15,43 +20,45 @@ const Gallery = () => {
         };
         loadUsers();
     }, []);
+    
+    useEffect(() => {
+        currentState < Gallery.length &&  setIsPrevious(true);
+        currentState >= 0 && setIsNext(true)
+    }, [currentState, Gallery.length])
 
-    const options = {
-        settings: {
-            overlayColor: "rgb(25, 136, 124)",
-            autoplaySpeed: 1500,
-            transitionSpeed: 900,
-        },
-        buttons: {
-            backgroundColor: "#1b5245",
-            iconColor: "rgba(126, 172, 139, 0.8)",
-        },
-        caption: {
-            captionColor: "#a6cfa5",
-            captionFontFamily: "Raleway, sans-serif",
-            captionFontWeight: "300",
-            captionTextTransform: "uppercase",
-        }
-    };
+
+    const previousImage = () => {
+        setCurrentState(currentState - 1)
+    }
+
+    const nextImage = () => {
+        setCurrentState(currentState + 1)
+    }
 
     return (
         <div>
             <div className='header'>Photo Gallery</div>
-            <div className="container">
-                { Gallery.map(photo => {
-                    return(
-                        <div key={photo.id} className='image-card'>
-                            <SRLWrapper options={options}>
-                                <a href={photo.url}>
-                                    <img className='image' src={photo.url} alt='person'/>
-                                </a>
-                            </SRLWrapper>
-                        </div>
-                    )
-                })
-                }
+            <div className='container'>
+                <div className='btn-group'>
+                    <div className='previous'>
+                        {
+                            isPrevious && <button type="button" className="btn btn-primary btn-previous" onClick={previousImage}>Previous</button>
+                        }
+                    </div>
+                    <div className='next'>
+                        {
+                            isNext && <button type="button" className="btn btn-primary btn-next" onClick={nextImage}>Next</button>
+                        }
+                    </div>
+                </div>
+                <div className='image-card'>
+                    {Gallery && <SRLWrapper><ImageCard gallery={Gallery[currentState]}/></SRLWrapper>}
+                </div>
             </div>
+
         </div>
     )
 }
+
+
 export default Gallery;

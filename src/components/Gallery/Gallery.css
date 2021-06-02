@@ -11,18 +11,26 @@
     padding-top: 10px;
     width: 80%;
     margin: auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
 }
 
 .image-card {
-    padding: 5px;
-    margin: 5px;
-    border: 1px solid #ddd;
-    border-radius: 2px;
+    position: relative
 }
 
 .image {
-    width: 100%;
+    align-items: center;
+    width: 50%;
 }
+
+.btn-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+.next {
+    padding-left: 100px;
+}
+.btn-primary {
+    font-size: 30px;
+    font-weight: bold;
+}
+

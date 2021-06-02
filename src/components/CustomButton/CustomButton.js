@@ -2,7 +2,7 @@ import React from 'react';
 
 const CustomButton = ({name, activeImage}) => {
     return (
-        <button onClick={() => activeImage()}>
+        <button type="button" className="btn btn-success" onClick={activeImage}>
             {name.toLowerCase()}
         </button>
     )
