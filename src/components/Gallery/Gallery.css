@@ -1,0 +1,28 @@
+.header {
+    text-align: center;
+    padding: 20px 0px;
+    margin-top: 0px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: rgb(124, 74, 59);
+}
+
+.container {
+    padding-top: 10px;
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.image-card {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
+.image {
+    width: 100%;
+}
