@@ -1,0 +1,36 @@
+.header {
+    text-align: center;
+    padding: 20px 0px;
+    margin-top: 0px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: rgb(124, 74, 59);
+}
+
+.container {
+    padding-top: 10px;
+    width: 80%;
+    margin: auto;
+}
+
+.image-card {
+    position: relative
+}
+
+.image {
+    align-items: center;
+    width: 50%;
+}
+
+.btn-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+.next {
+    padding-left: 100px;
+}
+.btn-primary {
+    font-size: 30px;
+    font-weight: bold;
+}
+
